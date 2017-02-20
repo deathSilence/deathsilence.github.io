@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
+<link href="http://lucksevenl7.github.io/feed.xml" rel="self" type="application/atom+xml" />
+<link href="http://lucksevenl7.github.io/" rel="alternate" type="text/html" />
+<updated>2017-02-20T15:34:47+08:00</updated>
+<id>http://lucksevenl7.github.io/</id>
+<subtitle>记录一个菜鸟的学习步伐，如果能帮助到人就太好了。</subtitle>
+<entry>
+<title>Test</title>
+<link href="http://lucksevenl7.github.io/2017/02/20/test/" rel="alternate" type="text/html" title="Test" />
+<published>2017-02-20T00:00:00+08:00</published>
+<updated>2017-02-20T00:00:00+08:00</updated>
+<id>http://lucksevenl7.github.io/2017/02/20/test</id>
+<content type="html" xml:base="http://lucksevenl7.github.io/2017/02/20/test/">
+</content>
+<summary></summary>
+</entry>
+<entry>
+<title>ngrok快速使用</title>
+<link href="http://lucksevenl7.github.io/2017/02/18/fast-use-ngrok/" rel="alternate" type="text/html" title="ngrok快速使用" />
+<published>2017-02-18T20:00:00+08:00</published>
+<updated>2017-02-18T20:00:00+08:00</updated>
+<id>http://lucksevenl7.github.io/2017/02/18/fast-use-ngrok</id>
+<content type="html" xml:base="http://lucksevenl7.github.io/2017/02/18/fast-use-ngrok/">&lt;h3 id=&quot;ngrokngrok&quot;&gt;ngrok的原理不是特别清楚，网上有很多使用的教程感觉太麻烦了。这里分享下ngrok文件和简单的配置&lt;/h3&gt;
+
+&lt;h3 id=&quot;ngrokhttplucksevenl7githubiosharengroktargz&quot;&gt;下载链接： &lt;a href=&quot;http://lucksevenl7.github.io/share/ngrok.tar.gz&quot;&gt;ngrok下载地址&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;ngrokngrok--configngrokcfg--subdomainexample-80examplebaidu-80-&quot;&gt;下载解压后，首先要确保ngrok有可以执行的权限，然后执行./ngrok -config=ngrok.cfg -subdomain=example 80,其中example为公网可以访问到的域名比如baidu，建议填写自己的或者自己公司的域名。 80 为要转发的端口，可以根据自己的需求改变。&lt;/h3&gt;
+</content>
+<author>
+<name>yang</name>
+</author>
+<summary>ngrok的原理不是特别清楚，网上有很多使用的教程感觉太麻烦了。这里分享下ngrok文件和简单的配置</summary>
+</entry>
+<entry>
+<title>微信支付V3 Sdk接入ecshop</title>
+<link href="http://lucksevenl7.github.io/2017/02/17/wxpay-for-ecshop/" rel="alternate" type="text/html" title="微信支付V3 Sdk接入ecshop" />
+<published>2017-02-17T19:00:00+08:00</published>
+<updated>2017-02-17T19:00:00+08:00</updated>
+<id>http://lucksevenl7.github.io/2017/02/17/wxpay-for-ecshop</id>
+<content type="html" xml:base="http://lucksevenl7.github.io/2017/02/17/wxpay-for-ecshop/">&lt;h1 id=&quot;section&quot;&gt;微信公众平台的配置&lt;/h1&gt;
+
+&lt;h3 id=&quot;js&quot;&gt;设置js安全域名&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;如果不设置的话，在使用公众号支付时会提示redirect_url错误
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;设置支付目录，和支付测试目录&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;比如我发起支付的文件是 http://example.com/includes/modules/payment/wxpay/example/native.php;
+
+那么我的支付目录要设置成 http://example.com/includes/modules/payment/wxpay/example/
+
+测试目录同理。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;url&quot;&gt;支付回调url&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;在支付完成后，微信会向向这个地址发送请求。主要用户扫码模式一支付，比如设置成
+http://example.com/includes/modules/payment/wxpay/example/notify.php。
+其他支付模式无需设置该url,（需要在代码里设置）
+
+到此微信公众平台的配置就完成了。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;v3-sdkecshop&quot;&gt;将微信支付V3 Sdk接入ecshop&lt;/h1&gt;
+
+&lt;h3 id=&quot;v3sdk&quot;&gt;获取微信支付v3SDK&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;这个在微信支付文档里很容易可以找到,然后将该SDK放进includes/modules/payment/下
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;更改配置&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;打开wxpay/lib
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;ecshop-&quot;&gt;编写ecshop 支付插件&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ecshop中所有的支付插件都位于includes/modules/payment/下，在该目录下创建wxpay.php文件 文件的格式可以参考该目录下其他的文件。在该文件中创建wxpay类，如下：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;```
+class wxpay {&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * 生成支付代码
+ * 
+ * @param array $order
+ *        	订单信息
+ * @param array $payment
+ *        	支付方式信息
+ */
+function get_code($order, $payment) 
+{
+  
+	if (isMobile()){
+		//如果是微信浏览器
+		if (strpos($_SERVER[&#39;HTTP_USER_AGENT&#39;], &#39;MicroMessenger&#39;) !== false) {
+			$button = &#39;&amp;lt;div style=&quot;text-align:center&quot;&amp;gt;&amp;lt;input type=&quot;button&quot; style=&quot;border:none; background:#e4393c; padding:5px 20px; color:#fff; line-height:20px;&quot; onclick=&quot;window.open(\&#39;/includes/modules/payment/wxpay/example/jsapi.php?&amp;amp;productId=&#39;.$order[&#39;order_sn&#39;].&#39;\&#39;)&quot; value=&quot;&#39; .$GLOBALS[&#39;_LANG&#39;][&#39;wxpay_button&#39;]. &#39;&quot; /&amp;gt;&amp;lt;/div&amp;gt;&#39;;
+		}else{
+			$button = &#39;&amp;lt;div style=&quot;text-align:center&quot;&amp;gt;&amp;lt;input type=&quot;button&quot; style=&quot;border:none; background:#e4393c; padding:5px 20px; color:#fff; line-height:20px;&quot; value=&quot;请使用微信浏览器进入我的订单进行付款&quot; /&amp;gt;&amp;lt;/div&amp;gt;&#39;;
+		}
+		
+	}else{
+		$button = &#39;&amp;lt;div style=&quot;text-align:center&quot;&amp;gt;&amp;lt;input type=&quot;button&quot; style=&quot;border:none; background:#e4393c; padding:5px 20px; color:#fff; line-height:20px;&quot; onclick=&quot;location.href=\&#39;/includes/modules/payment/wxpay/example/native.php?&amp;amp;productId=&#39;.$order[&#39;order_sn&#39;].&#39;\&#39;&quot; value=&quot;&#39; .$GLOBALS[&#39;_LANG&#39;][&#39;wxpay_button&#39;]. &#39;&quot; /&amp;gt;&amp;lt;/div&amp;gt;&#39;;
+	}
+
+	return $button;
+}
+
+
+/**
+ * 接受通知处理订单。这里可以写接受到微信回调请求后的逻辑，我是直接写在notify.php里面了。
+ * 
+ * @param undefined $log_id
+ *        	20141125
+ *        	
+ */
+function respond() {
+
+} } ``` 这段代码的主要左右就是返回页面一个带调转到支付页面的按钮。手机浏览器，微信浏览器，及PC浏览器返回的按钮都是不同的。手机非微信浏览器现在还没办法用微信支付。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;pc&quot;&gt;PC端扫码支付模式二&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;点击按钮跳转到wxpay/example/native.php  这里面有模式一和模式二，这里选择模式二，到这里按照微信提供的文档，应该就比较容易解决了。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;notifyphp&quot;&gt;回调 notify.php&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;微信发的请求会由该文件处理。我的处理逻辑如下：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;```
+	//重写回调处理函数
+	public function NotifyProcess($data, &amp;amp;$msg)
+	{
+		$notfiyOutput = array();&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	if(!array_key_exists(&quot;transaction_id&quot;, $data)){
+		$msg = &quot;输入参数不正确&quot;;
+		return false;
+	}
+	//查询订单，判断订单真实性
+	if(!$this-&amp;gt;Queryorder($data[&quot;transaction_id&quot;])){
+		$msg = &quot;订单查询失败&quot;;
+		return false;
+	}
+	$total_fee=$data[&#39;total_fee&#39;]/100;
+	//用户自定义逻辑，修改订单状态
+	//检查支付的金额是否与订单相符
+	$pay_log_id=get_order_id_by_sn($data[&#39;out_trade_no&#39;]);
+	if(!check_money($pay_log_id,$total_fee)){
+		$msg = &quot;支付金额与订单金额不符&quot;;
+		return false;
+	}
+	$user_id=getUserId($data[&#39;out_trade_no&#39;]);
+	order_paid($pay_log_id, 2,&quot;货款已微信支付&quot;);
+	$order_id=getOrderIdBySn($data[&#39;out_trade_no&#39;]);
+	Log::INFO(&quot;订单id:&quot;.$order_id.&quot;logs_id:&quot;.$pay_log_id);
+
+	$log_msg=&quot;用户&quot;. $user_id. &quot;已经为订单id:&quot;.$order_id.&quot;sn：&quot; .$data[&#39;out_trade_no&#39;]. &quot;支付了&quot;. $total_fee .&quot; 元,并将该订单状态改为已经支付&quot;;
+	Log::INFO($log_msg);
+	if ($msg!=&#39;OK&#39;) {
+		Log::ERROR(&quot;用户&quot;.$user_id.&quot;支付订单：&quot;.$data[&#39;out_trade_no&#39;].&quot;时出错，错误信息为&quot;.$msg);
+	}
+	return true;
+} ```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;在支付页面在支付成功后将二维码切换成成功提示消息&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;这里可以设置个定时器每隔几秒就去查询订单（微信支付提供了订单查询借口），等支付成功后就提示用户 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;sdk&quot;&gt;微信支付提供的参考文件还是很多的，只要认真看流程，然后对官方SDK进行一点修改就可满足自己的需求了，希望这篇文章能帮到需要的人。&lt;/h4&gt;
+
+</content>
+<author>
+<name>yang</name>
+</author>
+<summary>微信公众平台的配置</summary>
+</entry>
+<entry>
+<title>Laravel Valet For Ubuntu</title>
+<link href="http://lucksevenl7.github.io/2017/01/15/laravel-valet-for-ubuntu/" rel="alternate" type="text/html" title="Laravel Valet For Ubuntu" />
+<published>2017-01-15T20:00:00+08:00</published>
+<updated>2017-01-15T20:00:00+08:00</updated>
+<id>http://lucksevenl7.github.io/2017/01/15/laravel-valet-for-ubuntu</id>
+<content type="html" xml:base="http://lucksevenl7.github.io/2017/01/15/laravel-valet-for-ubuntu/">&lt;h1 id=&quot;laravel-valet-for-ubuntu&quot;&gt;Laravel Valet For Ubuntu&lt;/h1&gt;
+
+&lt;h2 id=&quot;install-php-and-extentions&quot;&gt;install php and extentions&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install php
+php*-cli php*-common php*-curl php*-json php*-mbstring php*-mcrypt php*-opcache php*-readline php*-xml php*-zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;install-mysql-and-mysql-php&quot;&gt;install mysql and mysql-php&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install mysql-server mysql-client
+sudo apt install php-mysql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;install-composer&quot;&gt;install composer&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo php -r &quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;
+sudo php composer-setup.php
+sudo mv composer.phar /usr/local/bin/composer
+sudo php -r &quot;unlink(&#39;composer-setup.php&#39;);&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;use-composer-install-valet&quot;&gt;use composer install valet&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer global require cpriego/valet-ubuntu
+if get composer.json is not wirteable use: sudo chown -R $user ~/.composer
+add ~/.composer/vendor/bin to PATH
+valet install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;use-valet&quot;&gt;use valet&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;创建一个新目录，例如 mkdir ~/Sites，然后进入这个目录并运行 valet park。这个命令会将当前所在目录作为web根目录。
+接下来，在新建的目录中创建一个新的Laravel站点：     
+composer global require &quot;laravel/installer&quot;
+laravel new blog。
+
+然后进入项目根目录下运行 valet link project-name
+在浏览器中访问 http://blog.dev。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</content>
+<author>
+<name>yang</name>
+</author>
+<summary>Laravel Valet For Ubuntu</summary>
+</entry>
+</feed>
