@@ -2,7 +2,7 @@
 layout:     post
 title:      "大家快来发文章啊"
 subtitle:   "Linux常用命令(不定期更新)"
-date:       2017-01-15 11:00:00
+date:       2017-02-21 11:00:00
 author:     "yang"
 header-img: "img/post-bg-05.jpg"
 ---
