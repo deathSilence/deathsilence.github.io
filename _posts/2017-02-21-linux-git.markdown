@@ -1,0 +1,34 @@
+---
+layout:     post
+title:      "大家快来发文章啊"
+subtitle:   "Linux常用命令(不定期更新)"
+date:       2017-01-15 11:00:00
+author:     "yang"
+header-img: "img/post-bg-05.jpg"
+---
+
+# Linux常用命令(不定期更新)
+
+## 压缩，解压缩
+    
+    1. tar xvzf image  解压
+    2. tar cvzf filename.tar.gz filename　压缩
+    3. rar a rar.rar 解压rar
+    
+    
+## 文件相关
+    
+    1. grep "管理中心" -r languages/      在languages 目录下查找包含管理中心的文件
+    2. find / -name "*google-music*" -exec rm -rf "{}" \;  根据文件名查找文件，并且将符合条件的文件删除    注：分号是必需的
+    
+## git
+    
+####  [git学习推荐网站](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137628548491051ccfaef0ccb470894c858999603fedf000)
+
+
+
+### 随时补充
+    
+
+
+
