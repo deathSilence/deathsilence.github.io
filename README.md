@@ -11,7 +11,8 @@
 
 1. git clone https://github.com/deathSilence/deathSilence.github.io.git   运行这条命令将项目克隆到本地
 2. 添加自己写好的文章markdown文件到_posts文件加下
-3. git commit -a -m"发表新文章" 
+3. git add -A  
+4. git commit -m"发表新文章--文章名" 
 4. git push 然后输入账号 密码 就将改动推送到线上了。
 5. 使用git过程中如有问题大家一起讨论哈。
 
