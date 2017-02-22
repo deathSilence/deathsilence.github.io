@@ -2,7 +2,7 @@
 layout:     post
 title:      "初识Markdown"
 subtitle:   "不要让自己过的太舒适"
-date:       2017-02-22 21:12:00
+date:       2017-02-22 21:28:00
 author:     "hxy"
 header-img: "img/post-bg-05.jpg"
 ---
