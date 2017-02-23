@@ -2,10 +2,11 @@
 layout:     post
 title:      "初识Markdown"
 subtitle:   "不要让自己过的太舒适"
-date:       2017-02-23 18:46:00
+date:       2017-02-23 19:00:00
 author:     "hxy"
 header-img: "img/post-bg-05.jpg"
 ---
+
 # 初识Markdown（不定期更新）
 
 ### 这是我第一次用markdown，我不知道怎么生成markdown文件或者md文件。然后我就抱着 试一试的态度，打开了一个[在线markdown编辑器](http://tool.oschina.net/markdown/),
