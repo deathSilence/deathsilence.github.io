@@ -26,14 +26,13 @@ header-img: "img/post-bg-05.jpg"
 	1.将windows里复制过来的文字先复制到Downloads下的新文件夹，命名为winFonts。
 	2.将想要复制过去的文件 msyh.ttf 放在 “-i msyh.ttf /usr/share/fonts” -i 和 需要安装到ubuntu下字体文件夹的中间
 
-	```
-	 cd Downloads/winFonts
-	 ls
-	 sudo cp -i msyh.ttf /usr/share/fonts/
+```
+cd Downloads/winFonts
+ls
+sudo cp -i msyh.ttf /usr/share/fonts/
+ 
+```
 
-	```
-
-	3.
     
 ## git
     
