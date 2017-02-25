@@ -31,8 +31,6 @@ header-img: "img/post-bg-05.jpg"
 
 3. git回滚 			git reset --hard  <HEAD>
 
-4. git跟踪远程分支   		git checkout -b <branch_name> origin/<branch_name>
-
 
 ### 随时补充
     
