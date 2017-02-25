@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="记录一群菜鸟的学习步伐，如果能帮助到人就太好了。">
+
+    <title>微信支付V3 Sdk接入ecshop - OutCage</title>
+
+    <link rel="canonical" href="http://deathsilence.github.io/2017/02/17/wxpay-for-ecshop/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+    <!-- icon -->
+    <link rel="icon" href="/bird.png" type="image/gif">
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link type="application/atom+xml" rel="alternate" href="http://deathsilence.github.io/feed.xml" title="" />
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">OutCage</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                
+				
+                <li>
+                    <a href="/about/">About</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/contact/">Contact</a>
+                </li>
+				
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('/img/post-bg-06.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>微信支付V3 Sdk接入ecshop</h1>
+                    
+                    <h2 class="subheading">使用微信支付V3为ecshop开通微信支付</h2>
+                    
+                    <span class="meta">Posted by yang on February 17, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<h1 id="section">微信公众平台的配置</h1>
+
+<h3 id="js">设置js安全域名</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>如果不设置的话，在使用公众号支付时会提示redirect_url错误
+</code></pre>
+</div>
+
+<h3 id="section-1">设置支付目录，和支付测试目录</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>比如我发起支付的文件是 http://example.com/includes/modules/payment/wxpay/example/native.php;
+
+那么我的支付目录要设置成 http://example.com/includes/modules/payment/wxpay/example/
+
+测试目录同理。
+</code></pre>
+</div>
+
+<h3 id="url">支付回调url</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>在支付完成后，微信会向向这个地址发送请求。主要用户扫码模式一支付，比如设置成
+http://example.com/includes/modules/payment/wxpay/example/notify.php。
+其他支付模式无需设置该url,（需要在代码里设置）
+
+到此微信公众平台的配置就完成了。
+</code></pre>
+</div>
+
+<h1 id="v3-sdkecshop">将微信支付V3 Sdk接入ecshop</h1>
+
+<h3 id="v3sdk">获取微信支付v3SDK</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>这个在微信支付文档里很容易可以找到,然后将该SDK放进includes/modules/payment/下
+</code></pre>
+</div>
+
+<h3 id="section-2">更改配置</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>打开wxpay/lib
+</code></pre>
+</div>
+
+<h3 id="ecshop-">编写ecshop 支付插件</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>ecshop中所有的支付插件都位于includes/modules/payment/下，在该目录下创建wxpay.php文件 文件的格式可以参考该目录下其他的文件。在该文件中创建wxpay类，如下：
+</code></pre>
+</div>
+
+<p>```
+class wxpay {</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>/**
+ * 生成支付代码
+ * 
+ * @param array $order
+ *        	订单信息
+ * @param array $payment
+ *        	支付方式信息
+ */
+function get_code($order, $payment) 
+{
+  
+	if (isMobile()){
+		//如果是微信浏览器
+		if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
+			$button = '&lt;div style="text-align:center"&gt;&lt;input type="button" style="border:none; background:#e4393c; padding:5px 20px; color:#fff; line-height:20px;" onclick="window.open(\'/includes/modules/payment/wxpay/example/jsapi.php?&amp;productId='.$order['order_sn'].'\')" value="' .$GLOBALS['_LANG']['wxpay_button']. '" /&gt;&lt;/div&gt;';
+		}else{
+			$button = '&lt;div style="text-align:center"&gt;&lt;input type="button" style="border:none; background:#e4393c; padding:5px 20px; color:#fff; line-height:20px;" value="请使用微信浏览器进入我的订单进行付款" /&gt;&lt;/div&gt;';
+		}
+		
+	}else{
+		$button = '&lt;div style="text-align:center"&gt;&lt;input type="button" style="border:none; background:#e4393c; padding:5px 20px; color:#fff; line-height:20px;" onclick="location.href=\'/includes/modules/payment/wxpay/example/native.php?&amp;productId='.$order['order_sn'].'\'" value="' .$GLOBALS['_LANG']['wxpay_button']. '" /&gt;&lt;/div&gt;';
+	}
+
+	return $button;
+}
+
+
+/**
+ * 接受通知处理订单。这里可以写接受到微信回调请求后的逻辑，我是直接写在notify.php里面了。
+ * 
+ * @param undefined $log_id
+ *        	20141125
+ *        	
+ */
+function respond() {
+
+} } ``` 这段代码的主要左右就是返回页面一个带调转到支付页面的按钮。手机浏览器，微信浏览器，及PC浏览器返回的按钮都是不同的。手机非微信浏览器现在还没办法用微信支付。
+</code></pre>
+</div>
+
+<h3 id="pc">PC端扫码支付模式二</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>点击按钮跳转到wxpay/example/native.php  这里面有模式一和模式二，这里选择模式二，到这里按照微信提供的文档，应该就比较容易解决了。
+</code></pre>
+</div>
+
+<h3 id="notifyphp">回调 notify.php</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>微信发的请求会由该文件处理。我的处理逻辑如下：
+</code></pre>
+</div>
+
+<p>```
+	//重写回调处理函数
+	public function NotifyProcess($data, &amp;$msg)
+	{
+		$notfiyOutput = array();</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	if(!array_key_exists("transaction_id", $data)){
+		$msg = "输入参数不正确";
+		return false;
+	}
+	//查询订单，判断订单真实性
+	if(!$this-&gt;Queryorder($data["transaction_id"])){
+		$msg = "订单查询失败";
+		return false;
+	}
+	$total_fee=$data['total_fee']/100;
+	//用户自定义逻辑，修改订单状态
+	//检查支付的金额是否与订单相符
+	$pay_log_id=get_order_id_by_sn($data['out_trade_no']);
+	if(!check_money($pay_log_id,$total_fee)){
+		$msg = "支付金额与订单金额不符";
+		return false;
+	}
+	$user_id=getUserId($data['out_trade_no']);
+	order_paid($pay_log_id, 2,"货款已微信支付");
+	$order_id=getOrderIdBySn($data['out_trade_no']);
+	Log::INFO("订单id:".$order_id."logs_id:".$pay_log_id);
+
+	$log_msg="用户". $user_id. "已经为订单id:".$order_id."sn：" .$data['out_trade_no']. "支付了". $total_fee ." 元,并将该订单状态改为已经支付";
+	Log::INFO($log_msg);
+	if ($msg!='OK') {
+		Log::ERROR("用户".$user_id."支付订单：".$data['out_trade_no']."时出错，错误信息为".$msg);
+	}
+	return true;
+} ```
+</code></pre>
+</div>
+
+<h3 id="section-3">在支付页面在支付成功后将二维码切换成成功提示消息</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>这里可以设置个定时器每隔几秒就去查询订单（微信支付提供了订单查询借口），等支付成功后就提示用户 
+</code></pre>
+</div>
+
+<h4 id="sdk">微信支付提供的参考文件还是很多的，只要认真看流程，然后对官方SDK进行一点修改就可满足自己的需求了，希望这篇文章能帮到需要的人。</h4>
+
+
+
+                <hr>
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/01/15/laravel-valet-for-ubuntu/" data-toggle="tooltip" data-placement="top" title="Laravel Valet For Ubuntu">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/02/18/fast-use-ngrok/" data-toggle="tooltip" data-placement="top" title="ngrok快速使用">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/deathsilence">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="mailto:yang_shuai_ooo">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; OutCage 2017</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?72abca26c125d9db818f0be26213f56e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+    
+
+
+</body>
+
+</html>
