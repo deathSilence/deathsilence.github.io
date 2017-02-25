@@ -1,28 +1,602 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 <generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
-<link href="http://lucksevenl7.github.io/feed.xml" rel="self" type="application/atom+xml" />
-<link href="http://lucksevenl7.github.io/" rel="alternate" type="text/html" />
-<updated>2017-02-20T15:34:47+08:00</updated>
-<id>http://lucksevenl7.github.io/</id>
-<subtitle>记录一个菜鸟的学习步伐，如果能帮助到人就太好了。</subtitle>
+<link href="http://deathsilence.github.io/feed.xml" rel="self" type="application/atom+xml" />
+<link href="http://deathsilence.github.io/" rel="alternate" type="text/html" />
+<updated>2017-02-25T11:33:17+08:00</updated>
+<id>http://deathsilence.github.io/</id>
+<subtitle>记录一群菜鸟的学习步伐，如果能帮助到人就太好了。</subtitle>
 <entry>
-<title>Test</title>
-<link href="http://lucksevenl7.github.io/2017/02/20/test/" rel="alternate" type="text/html" title="Test" />
-<published>2017-02-20T00:00:00+08:00</published>
-<updated>2017-02-20T00:00:00+08:00</updated>
-<id>http://lucksevenl7.github.io/2017/02/20/test</id>
-<content type="html" xml:base="http://lucksevenl7.github.io/2017/02/20/test/">
+<title>window.onload 没有执行的原因</title>
+<link href="http://deathsilence.github.io/2017/02/23/onload/" rel="alternate" type="text/html" title=" window.onload 没有执行的原因" />
+<published>2017-02-23T22:48:00+08:00</published>
+<updated>2017-02-23T22:48:00+08:00</updated>
+<id>http://deathsilence.github.io/2017/02/23/onload</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/23/onload/">&lt;h1 id=&quot;windowonload-&quot;&gt;window.onload 没有执行的原因&lt;/h1&gt;
+
+&lt;p&gt;在做一个新功能的时候发现原先页面里的onload的函数一直不执行&lt;/p&gt;
+
+&lt;p&gt;```
+ window.onload=function(){
+     method1();
+ }&lt;/p&gt;
+
+&lt;p&gt;```
+这个函数一直没有执行，这个功能之前还好用，应该是被我另外的代码影响到了，找了下，发现在footer里面我新增了一个函数&lt;/p&gt;
+
+&lt;p&gt;```
+ window.onload=function(){
+     method2();
+ }&lt;/p&gt;
+
+&lt;p&gt;```
+原来是后来添加的onload函数把之前的onload函数覆盖掉了。&lt;/p&gt;
+
+&lt;p&gt;如果把第二处onload函数改为jquery的$()函数，像这样&lt;/p&gt;
+
+&lt;p&gt;```
+$(function(){&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;method2();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;)&lt;/p&gt;
+
+&lt;p&gt;```
+这样两个方法都会执行，并且互不影响。&lt;/p&gt;
+
+&lt;h1 id=&quot;windowonload---documentreadyfunction&quot;&gt;window.onload 和  $(document).ready()或者简写成$(function(){})的区别&lt;/h1&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;执行时间不同&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。 
+
+$(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;同一页面内可存在的数量不同&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;window.onload 只能有一个，后面的onload会覆盖掉前面的onload,因为onload
+是window对象的一个方法，只能有一个值
+
+$(document).ready() 可以有多个，并且都可以执行。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 </content>
-<summary></summary>
+<author>
+<name>yang</name>
+</author>
+<summary>window.onload 没有执行的原因</summary>
+</entry>
+<entry>
+<title>git checkout</title>
+<link href="http://deathsilence.github.io/2017/02/23/git-checkout/" rel="alternate" type="text/html" title=" git checkout" />
+<published>2017-02-23T00:04:00+08:00</published>
+<updated>2017-02-23T00:04:00+08:00</updated>
+<id>http://deathsilence.github.io/2017/02/23/git-checkout</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/23/git-checkout/">&lt;h1 id=&quot;git-checkout-git-checkout-head&quot;&gt;git checkout 命令的作用，以及错误使用git checkout 导致HEAD分离情况的处理&lt;/h1&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;切换分支&lt;/h2&gt;
+
+&lt;p&gt;在提交层面的git checkout 非常简单，当传入分支名的时候，就可以切换到那个分支&lt;/p&gt;
+
+&lt;p&gt;比如：
+```
+ git checkout dev&lt;/p&gt;
+
+&lt;p&gt;```
+上面这个命令做的不过是将HEAD移到一个新的分支，然后更新工作目录。因为这可能会覆盖本地的修改，Git强制你提交或者缓存工作目录中的所有更改，不然在checkout的时候这些更改都会丢失。
+&lt;img src=&quot;https://camo.githubusercontent.com/5d7183ad484d57e357ae45ea400ae565a533fe9a/68747470733a2f2f7777772e61746c61737369616e2e636f6d2f6769742f696d616765732f7475746f7269616c732f616476616e6365642f726573657474696e672d636865636b696e672d6f75742d616e642d726576657274696e672f30342e737667&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;切换到任意提交&lt;/h2&gt;
+
+&lt;p&gt;```
+ commit 9fa9c5fb42053d97276ac50c1935d61c0e19ebdc
+Author: fanyu1986 &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#049;&amp;#056;&amp;#051;&amp;#057;&amp;#054;&amp;#054;&amp;#048;&amp;#053;&amp;#053;&amp;#057;&amp;#050;&amp;#064;&amp;#049;&amp;#054;&amp;#051;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;&gt;&amp;#049;&amp;#056;&amp;#051;&amp;#057;&amp;#054;&amp;#054;&amp;#048;&amp;#053;&amp;#053;&amp;#057;&amp;#050;&amp;#064;&amp;#049;&amp;#054;&amp;#051;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;
+Date:   Fri Feb 17 15:15:37 2017 +0800&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;add style of account message
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;```
+其中 9fa9c5fb42053d97276ac50c1935d61c0e19ebdc 即为提交的HEAD&lt;/p&gt;
+
+&lt;p&gt;使用git checkout 9fa9c5fb42053d97276ac50c1935d61c0e19ebdc 就可以将HEAD移动到这个提交&lt;/p&gt;
+
+&lt;p&gt;比如如果想返会当前HEAD前两次的提交 可以使用&lt;/p&gt;
+
+&lt;p&gt;```
+git checkout HEAD~2&lt;/p&gt;
+
+&lt;p&gt;```
+&lt;img src=&quot;https://camo.githubusercontent.com/b6b326af6c5f485ea326120dd2f1f78e741d1748/68747470733a2f2f7777772e61746c61737369616e2e636f6d2f6769742f696d616765732f7475746f7269616c732f616476616e6365642f726573657474696e672d636865636b696e672d6f75742d616e642d726576657274696e672f30352e737667&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;head&quot;&gt;HEAD分离&lt;/h2&gt;
+
+&lt;p&gt;这对于快速查看项目旧版本来说非常有用。但如果你当前的HEAD没有任何分支引用（我现在理解是没有一个分支的最后一次提交的HEAD和当前HEAD一样），那么这会造成HEAD分离。&lt;/p&gt;
+
+&lt;p&gt;```
+头指针分离于 9fa9c5f&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;这是非常危险的，如果你接着添加新的提交，&lt;/p&gt;
+
+&lt;p&gt;```
+[分离头指针 a1444ee] 测试HEAD分离
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test_head.php&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;然后切换到别的分支之时git会提醒你&lt;/p&gt;
+
+&lt;p&gt;```
+警告：您正丢下 1 个提交，未和任何分支关联：&lt;/p&gt;
+
+&lt;p&gt;9fa9c5f commit message 分离&lt;/p&gt;
+
+&lt;p&gt;如果您想要通过创建新分支保存它，这可能是一个好时候。
+如下操作：&lt;/p&gt;
+
+&lt;p&gt;git branch &lt;新分支名&gt; 9fa9c5f&lt;/新分支名&gt;&lt;/p&gt;
+
+&lt;p&gt;切换到分支 ‘master’
+您的分支与上游分支 ‘origin/master’ 一致。&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;如果使用 git branch &lt;新分支名&gt; 9fa9c5f  会创建一个新的分支来保存本次提交，如果没有建分支的话，HEAD分离提交后的内容就会永远消失。&lt;/新分支名&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;本文参考&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/geeeeeeeeek/git-recipes/wiki/5.2-%E4%BB%A3%E7%A0%81%E5%9B%9E%E6%BB%9A%EF%BC%9AReset%E3%80%81Checkout%E3%80%81Revert%E7%9A%84%E9%80%89%E6%8B%A9&quot;&gt;5.2 代码回滚：Reset、Checkout、Revert的选择&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/p/91a0f8feb45d&quot;&gt;危险！分离头指针&lt;/a&gt;&lt;/p&gt;
+
+</content>
+<author>
+<name>yang</name>
+</author>
+<summary>git checkout 命令的作用，以及错误使用git checkout 导致HEAD分离情况的处理</summary>
+</entry>
+<entry>
+<title>Hxy</title>
+<link href="http://deathsilence.github.io/2017/02/23/hxy/" rel="alternate" type="text/html" title="Hxy" />
+<published>2017-02-23T00:00:00+08:00</published>
+<updated>2017-02-23T00:00:00+08:00</updated>
+<id>http://deathsilence.github.io/2017/02/23/hxy</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/23/hxy/">&lt;p&gt;﻿—
+layout:     post
+title:      “初识Markdown”
+subtitle:   “不要让自己过的太舒适”
+date:       2017-02-23 19:00:00
+author:     “hxy”
+header-img: “img/post-bg-05.jpg”
+—&lt;/p&gt;
+
+&lt;h1 id=&quot;markdown&quot;&gt;初识Markdown（不定期更新）&lt;/h1&gt;
+
+&lt;h3 id=&quot;markdownmarkdownmd-markdownhttptooloschinanetmarkdown&quot;&gt;这是我第一次用markdown，我不知道怎么生成markdown文件或者md文件。然后我就抱着 试一试的态度，打开了一个&lt;a href=&quot;http://tool.oschina.net/markdown/&quot;&gt;在线markdown编辑器&lt;/a&gt;,&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;把带有#符号的的东西 复制想下来.&lt;/p&gt;
+
+  &lt;p&gt;然后 ，新建了一个.txt.粘贴进去&lt;/p&gt;
+
+  &lt;p&gt;后缀改为.md，就上传了github&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;md-headtitlegithub--&quot;&gt;然后不对，回来重新改，在md文件的开头 ，加上已经提交的文件的，关于什么head，title，各种乱七八糟的格式设置，值改为自己的就好。然后我再试着上传…失败了，在github上已经看到了自己提交的文件，但是 却没有在 博客上展示出来。&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;原来是 文件名字的问题，文件名不能含有markdown关键字我之前的名字是 hxy_markdown.md ,导致内部一些错误&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;markdown-1&quot;&gt;重命名之后（就是去掉了markdown关键字）,终于可以在博客上看到了自己写的乱七八糟的东西。&lt;/h3&gt;
+&lt;p&gt;## 说一下自己对静态博客的看法。
+&amp;gt; 静态博客，就是那个静态页面，就是和github绑定了，他就是从github上的_post文件夹下面 读取文件，然后以文章的像是展示。github就相当于 数据源了。
+&amp;gt;
+&amp;gt; 我们要做的就是 更新数据源就好了。就是往_post文件夹 按照 和ccyang约定好的规范 添加文件就好了&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;怎么往“数据库里更新文件”，“规范”又是什么&lt;/h2&gt;
+&lt;p&gt;### 更新数据库，就是用git向github push了
+&amp;gt; 具体的步骤可以自行百度。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;“规范”&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;1.文件必须是 .md 格式或者 .markdown 格式。&lt;/p&gt;
+
+  &lt;p&gt;2.文件内容的开始必须有 一些参数和值，就是上面说的什么title，date的东西，可以复制已经上传好的模板。&lt;/p&gt;
+
+  &lt;p&gt;3.很简单，上传上去就可以在博客上看到了&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;一些坑&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;上传的文件名 不能含有 markdown&lt;/p&gt;
+
+  &lt;p&gt;文件里面的date参数，必须是当前时间。应该是 今天。。。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;git&quot;&gt;git常用命令&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;【git pull origin master】每次提交前 必须先执行次命令，保证本地仓库的代码是最新版&lt;/p&gt;
+
+  &lt;p&gt;【git add .】把修改过的文件，全部添加到 即将提交的一个地方。&lt;/p&gt;
+
+  &lt;p&gt;【git commit -m “每次提交都要写的本次修改的内容”】，给自己修改历史 做个记录&lt;/p&gt;
+
+  &lt;p&gt;【git push】 把自己的代码统统提交到github&lt;/p&gt;
+
+  &lt;p&gt;大功告成，看去看看自己的博客&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</content>
+<summary>﻿—layout:     posttitle:      “初识Markdown”subtitle:   “不要让自己过的太舒适”date:       2017-02-23 19:00:00author:     “hxy”header-img: “img/post-bg-05.jpg”—</summary>
+</entry>
+<entry>
+<title>开发中常用的正则表达式</title>
+<link href="http://deathsilence.github.io/2017/02/22/regex/" rel="alternate" type="text/html" title="开发中常用的正则表达式" />
+<published>2017-02-22T21:28:00+08:00</published>
+<updated>2017-02-22T21:28:00+08:00</updated>
+<id>http://deathsilence.github.io/2017/02/22/regex</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/22/regex/">&lt;h1 id=&quot;section&quot;&gt;开发中常用的正则表达式大家随时补充哈&lt;/h1&gt;
+
+&lt;h4 id=&quot;httptooloschinanetregex&quot;&gt;&lt;strong&gt;&lt;a href=&quot;http://tool.oschina.net/regex&quot;&gt;正则在线测试地址&lt;/a&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;&lt;strong&gt;1 . 校验密码强度&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;&lt;strong&gt;2. 校验中文&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;字符串仅能是中文。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^[\\u4e00-\\u9fa5]{0,}$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;&lt;strong&gt;3. 由数字、26个英文字母或下划线组成的字符串&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^\\w+$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;e-mail-&quot;&gt;&lt;strong&gt;4. 校验E-Mail 地址&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;同密码一样，下面是E-mail地址合规性的正则检查语句。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[\\w!#$%&amp;amp;&#39;*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&amp;amp;&#39;*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-4&quot;&gt;&lt;strong&gt;5. 校验身份证号码&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;下面是身份证号码的正则校验。15 或 18位。&lt;/p&gt;
+
+&lt;p&gt;15位：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;18位：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-5&quot;&gt;&lt;strong&gt;6. 校验日期&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;“yyyy-mm-dd“ 格式的日期校验，已考虑平闰年。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;&lt;strong&gt;7. 校验金额&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;金额校验，精确到2位小数。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^[0-9]+(.[0-9]{2})?$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-7&quot;&gt;&lt;strong&gt;8. 校验手机号&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;下面是国内 13、15、18开头的手机号正则表达式。（可根据目前国内收集号扩展前两位开头号码）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;ie&quot;&gt;&lt;strong&gt;9. 判断IE的版本&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;IE目前还没被完全取代，很多页面还是需要做版本兼容，下面是IE版本检查的表达式。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\/[5-9]\\.0).*$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;ip-v4&quot;&gt;&lt;strong&gt;10. 校验IP-v4地址&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;IP4 正则语句。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;ip-v6&quot;&gt;&lt;strong&gt;11. 校验IP-v6地址&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;IP6 正则语句。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;url&quot;&gt;&lt;strong&gt;12. 检查URL的前缀&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;应用开发中很多时候需要区分请求是HTTPS还是HTTP，通过下面的表达式可以取出一个url的前缀然后再逻辑判断。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if (!s.match(/^[a-zA-Z]+:\\/\\//))
+{
+    s = &#39;http://&#39; + s;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;url-1&quot;&gt;&lt;strong&gt;13. 提取URL链接&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;下面的这个表达式可以筛选出一段文本中的URL。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^(f|ht){1}(tp|tps):\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w- ./?%&amp;amp;=]*)?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-8&quot;&gt;&lt;strong&gt;14. 文件路径及扩展名校验&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;验证windows下文件路径和扩展名（下面的例子中为.txt文件）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^([a-zA-Z]\\:|\\\\)\\\\([^\\\\]+\\\\)*[^\\/:*?&quot;&amp;lt;&amp;gt;|]+\\.txt(l)?$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;color-hex-codes&quot;&gt;&lt;strong&gt;15. 提取Color Hex Codes&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;有时需要抽取网页中的颜色代码，可以使用下面的表达式。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-9&quot;&gt;&lt;strong&gt;16. 提取网页图片&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;假若你想提取网页中所有图片信息，可以利用下面的表达式。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\\&amp;lt; *[img][^\\\\&amp;gt;]*[src] *= *[\\&quot;\\&#39;]{0,1}([^\\&quot;\\&#39;\\ &amp;gt;]*)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-10&quot;&gt;&lt;strong&gt;17. 提取页面超链接&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;提取html中的超链接。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(&amp;lt;a\\s*(?!.*\\brel=)[^&amp;gt;]*)(href=&quot;https?:\\/\\/)((?!(?:(?:www\\.)?&#39;.implode(&#39;|(?:www\\.)?&#39;, $follow_list).&#39;))[^&quot;]+)&quot;((?!.*\\brel=)[^&amp;gt;]*)(?:[^&amp;gt;]*)&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;css&quot;&gt;&lt;strong&gt;18. 查找CSS属性&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;通过下面的表达式，可以搜索到相匹配的CSS属性。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^\\s*[a-zA-Z\\-]+\\s*[:]{1}\\s[a-zA-Z0-9\\s.#]+[;]{1}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-11&quot;&gt;&lt;strong&gt;19. 抽取注释&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;如果你需要移除HMTL中的注释，可以使用如下的表达式。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;!--(.*?)--&amp;gt; 
+或者：(?=&amp;lt;!--)([\s\S]*?)--&amp;gt;（实测有效）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;html&quot;&gt;&lt;strong&gt;20. 匹配HTML标签&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;通过下面的表达式可以匹配出HTML中的标签属性。&lt;/p&gt;
+
+&lt;p&gt;```
+   /^&amp;lt;([a-z]+)([^&amp;lt;]+)&lt;em&gt;(?:&amp;gt;(.&lt;/em&gt;)&amp;lt;\/\1&amp;gt;|\s+\/&amp;gt;)$/&lt;/p&gt;
+
+&lt;p&gt;```
+#### &lt;strong&gt;21. 域名：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(/.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+/.?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-12&quot;&gt;&lt;strong&gt;20. 非汉字，英文字母，非数字&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[^\u4E00-\u9FA5A-Za-z0-9]+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-13&quot;&gt;&lt;strong&gt;待续&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;javascript-&quot;&gt;javascript 使用正则表达式示例&lt;/h2&gt;
+&lt;p&gt;### 匹配HTML标签&lt;/p&gt;
+
+&lt;p&gt;```
+var reg =/^&amp;lt;([a-z]+)([^&amp;lt;]+)&lt;em&gt;(?:&amp;gt;(.&lt;/em&gt;)&amp;lt;\/\1&amp;gt;|\s+\/&amp;gt;)$/;&lt;/p&gt;
+
+&lt;p&gt;var result=reg.exec(‘&lt;span&gt;/ 精挑细选 为您推荐 /&lt;/span&gt;’);&lt;/p&gt;
+
+&lt;p&gt;console.log(result); —&amp;gt; [“&lt;span&gt;/ 精挑细选 为您推荐 /&lt;/span&gt;”, “span”, undefined, “/ 精挑细选 为您推荐 /”]&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+</content>
+<author>
+<name>yang</name>
+</author>
+<summary>开发中常用的正则表达式大家随时补充哈</summary>
+</entry>
+<entry>
+<title>清除浮动篇</title>
+<link href="http://deathsilence.github.io/2017/02/21/fanyu/" rel="alternate" type="text/html" title="清除浮动篇" />
+<published>2017-02-21T22:37:00+08:00</published>
+<updated>2017-02-21T22:37:00+08:00</updated>
+<id>http://deathsilence.github.io/2017/02/21/fanyu</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/21/fanyu/">&lt;h3 id=&quot;section&quot;&gt;清除浮动&lt;/h3&gt;
+
+&lt;h5 id=&quot;section-1&quot;&gt;1.父级清浮动&lt;/h5&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt; 老浏览器还是经常使用父级清浮动 &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;``` html&lt;/p&gt;
+&lt;div style=&quot;clear:both&quot;&gt;
+    &lt;p style=&quot;float:left;&quot;&gt;我是浮动在左侧的&lt;/p&gt;
+    &lt;p style=&quot;float:left;&quot;&gt;我是浮动在右侧的&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;```
+##### 2.伪类清浮动&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt; 能兼容css3的浏览器 &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;```  html&lt;/p&gt;
+
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;伪类清浮动&lt;/title&gt;
+        &lt;style&gt;
+            p::after{
+                content:&quot;&quot;;
+                display:block;
+                clear:both;
+                }
+        &lt;/style&gt;
+        &lt;body&gt;
+            &lt;div&gt;
+                &lt;p&gt;我自己的浮动自己清&lt;/p&gt;
+                &lt;p&gt;我自己的浮动自己清&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/body&gt;
+    &lt;/head&gt;
+&lt;/html&gt;
+
+&lt;p&gt;```
+` 我精常 before, after 一起用，用 before 可以保证不会受之前没有清干净浮动的影响 `&lt;/p&gt;
+
+&lt;h5 id=&quot;div&quot;&gt;3.div清浮动&lt;/h5&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt; 老浏览器还是经常使用div清浮动 最不建议使用的清浮动方式，所以放在最后&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;``` html&lt;/p&gt;
+&lt;div&gt;
+    &lt;p style=&quot;float:left;&quot;&gt;我是浮动在左侧的&lt;/p&gt;
+    &lt;p style=&quot;float:left;&quot;&gt;我是浮动在右侧的&lt;/p&gt;
+&lt;/div&gt;
+&lt;div style=&quot;clear:both&quot;&gt;&lt;/div&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+</content>
+<author>
+<name>fanyu</name>
+</author>
+<summary>清除浮动</summary>
+</entry>
+<entry>
+<title>大家快来发文章啊</title>
+<link href="http://deathsilence.github.io/2017/02/21/linux-git/" rel="alternate" type="text/html" title="大家快来发文章啊" />
+<published>2017-02-21T19:00:00+08:00</published>
+<updated>2017-02-21T19:00:00+08:00</updated>
+<id>http://deathsilence.github.io/2017/02/21/linux-git</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/21/linux-git/">&lt;h1 id=&quot;linux&quot;&gt;Linux常用命令(不定期更新)&lt;/h1&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;压缩，解压缩&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. tar xvzf image  解压
+2. tar cvzf filename.tar.gz filename　压缩
+3. rar a rar.rar 解压rar
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;文件相关&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. grep &quot;管理中心&quot; -r languages/      在languages 目录下查找包含管理中心的文件
+2. find / -name &quot;*google-music*&quot; -exec rm -rf &quot;{}&quot; \;  根据文件名查找文件，并且将符合条件的文件删除    注：分号是必需的
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;git&quot;&gt;git&lt;/h2&gt;
+
+&lt;h4 id=&quot;githttpwwwliaoxuefengcomwiki0013739516305929606dd18361248578c67b8067c8c017b00000137628548491051ccfaef0ccb470894c858999603fedf000&quot;&gt;&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137628548491051ccfaef0ccb470894c858999603fedf000&quot;&gt;git学习推荐网站&lt;/a&gt;&lt;/h4&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;随时补充&lt;/h3&gt;
+
+</content>
+<author>
+<name>yang</name>
+</author>
+<summary>Linux常用命令(不定期更新)</summary>
+</entry>
+<entry>
+<title>定风波</title>
+<link href="http://deathsilence.github.io/2017/02/21/dingfengbo/" rel="alternate" type="text/html" title="定风波" />
+<published>2017-02-21T19:00:00+08:00</published>
+<updated>2017-02-21T19:00:00+08:00</updated>
+<id>http://deathsilence.github.io/2017/02/21/dingfengbo</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/21/dingfengbo/">&lt;h1 id=&quot;section&quot;&gt;定风波&lt;/h1&gt;
+&lt;p&gt;## 三月七日
+### 苏轼
+三月七日，沙湖道中遇雨。雨具先去，同行皆狼狈，余独不觉。已而遂晴，故作此。
+莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。
+料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来潇瑟处，归去，也无风雨也无晴。&lt;/p&gt;
+</content>
+<author>
+<name>苏轼</name>
+</author>
+<summary>定风波## 三月七日### 苏轼三月七日，沙湖道中遇雨。雨具先去，同行皆狼狈，余独不觉。已而遂晴，故作此。莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来潇瑟处，归去，也无风雨也无晴。</summary>
+</entry>
+<entry>
+<title>六国论</title>
+<link href="http://deathsilence.github.io/2017/02/21/liuguolun/" rel="alternate" type="text/html" title="六国论" />
+<published>2017-02-21T19:00:00+08:00</published>
+<updated>2017-02-21T19:00:00+08:00</updated>
+<id>http://deathsilence.github.io/2017/02/21/ liuguolun</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/21/liuguolun/">&lt;h1 id=&quot;section&quot;&gt;六国论&lt;/h1&gt;
+&lt;p&gt;六国破灭，非兵不利 ，战不善，弊在赂秦。赂秦而力亏，破灭之道也。或曰：六国互丧，率赂秦耶？曰：不赂者以赂者丧，盖失强援，不能独完。故曰：弊在赂秦也。
+秦以攻取之外，小则获邑，大则得城。较秦之所得，与战胜而得者，其实百倍；诸侯之所亡，与战败而亡者，其实亦百倍。则秦之所大欲，诸侯之所大患，固不在战矣。思厥先祖父，暴霜露，斩荆棘，以有尺寸之地。子孙视之不甚惜，举以予人，如弃草芥。今日割五城，明日割十城，然后得一夕安寝。起视四境，而秦兵又至矣。然则诸侯之地有限，暴秦之欲无厌，奉之弥繁，侵之愈急。故不战而强弱胜负已判矣。至于颠覆，理固宜然。古人云：“以地事秦，犹抱薪救火，薪不尽，火不灭。”此言得之。
+齐人未尝赂秦，终继五国迁灭，何哉？与嬴而不助五国也。五国既丧，齐亦不免矣。燕赵之君，始有远略，能守其土，义不赂秦。是故燕虽小国而后亡，斯用兵之效也。至丹以荆卿为计，始速祸焉。赵尝五战于秦，二败而三胜。后秦击赵者再，李牧连却之。洎牧以谗诛，邯郸为郡，惜其用武而不终也。且燕赵处秦革灭殆尽之际，可谓智力孤危，战败而亡，诚不得已。向使三国各爱其地，齐人勿附于秦，刺客不行，良将犹在，则胜负之数，存亡之理，当与秦相较，或未易量。
+呜呼！以赂秦之地，封天下之谋臣，以事秦之心，礼天下之奇才，并力西向，则吾恐秦人食之不得下咽也。悲夫！有如此之势，而为秦人积威之所劫，日削月割，以趋于亡。为国者无使为积威之所劫哉！
+夫六国与秦皆诸侯，其势弱于秦，而犹有可以不赂而胜之之势。苟以天下之大，下而从六国破亡之故事，是又在六国下矣。&lt;/p&gt;
+</content>
+<author>
+<name>郭栋</name>
+</author>
+<summary>六国论六国破灭，非兵不利 ，战不善，弊在赂秦。赂秦而力亏，破灭之道也。或曰：六国互丧，率赂秦耶？曰：不赂者以赂者丧，盖失强援，不能独完。故曰：弊在赂秦也。秦以攻取之外，小则获邑，大则得城。较秦之所得，与战胜而得者，其实百倍；诸侯之所亡，与战败而亡者，其实亦百倍。则秦之所大欲，诸侯之所大患，固不在战矣。思厥先祖父，暴霜露，斩荆棘，以有尺寸之地。子孙视之不甚惜，举以予人，如弃草芥。今日割五城，明日割十城，然后得一夕安寝。起视四境，而秦兵又至矣。然则诸侯之地有限，暴秦之欲无厌，奉之弥繁，侵之愈急。故不战而强弱胜负已判矣。至于颠覆，理固宜然。古人云：“以地事秦，犹抱薪救火，薪不尽，火不灭。”此言得之。齐人未尝赂秦，终继五国迁灭，何哉？与嬴而不助五国也。五国既丧，齐亦不免矣。燕赵之君，始有远略，能守其土，义不赂秦。是故燕虽小国而后亡，斯用兵之效也。至丹以荆卿为计，始速祸焉。赵尝五战于秦，二败而三胜。后秦击赵者再，李牧连却之。洎牧以谗诛，邯郸为郡，惜其用武而不终也。且燕赵处秦革灭殆尽之际，可谓智力孤危，战败而亡，诚不得已。向使三国各爱其地，齐人勿附于秦，刺客不行，良将犹在，则胜负之数，存亡之理，当与秦相较，或未易量。呜呼！以赂秦之地，封天下之谋臣，以事秦之心，礼天下之奇才，并力西向，则吾恐秦人食之不得下咽也。悲夫！有如此之势，而为秦人积威之所劫，日削月割，以趋于亡。为国者无使为积威之所劫哉！夫六国与秦皆诸侯，其势弱于秦，而犹有可以不赂而胜之之势。苟以天下之大，下而从六国破亡之故事，是又在六国下矣。</summary>
 </entry>
 <entry>
 <title>ngrok快速使用</title>
-<link href="http://lucksevenl7.github.io/2017/02/18/fast-use-ngrok/" rel="alternate" type="text/html" title="ngrok快速使用" />
+<link href="http://deathsilence.github.io/2017/02/18/fast-use-ngrok/" rel="alternate" type="text/html" title="ngrok快速使用" />
 <published>2017-02-18T20:00:00+08:00</published>
 <updated>2017-02-18T20:00:00+08:00</updated>
-<id>http://lucksevenl7.github.io/2017/02/18/fast-use-ngrok</id>
-<content type="html" xml:base="http://lucksevenl7.github.io/2017/02/18/fast-use-ngrok/">&lt;h3 id=&quot;ngrokngrok&quot;&gt;ngrok的原理不是特别清楚，网上有很多使用的教程感觉太麻烦了。这里分享下ngrok文件和简单的配置&lt;/h3&gt;
+<id>http://deathsilence.github.io/2017/02/18/fast-use-ngrok</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/18/fast-use-ngrok/">&lt;h3 id=&quot;ngrokngrok&quot;&gt;ngrok的原理不是特别清楚，网上有很多使用的教程感觉太麻烦了。这里分享下ngrok文件和简单的配置&lt;/h3&gt;
 
 &lt;h3 id=&quot;ngrokhttplucksevenl7githubiosharengroktargz&quot;&gt;下载链接： &lt;a href=&quot;http://lucksevenl7.github.io/share/ngrok.tar.gz&quot;&gt;ngrok下载地址&lt;/a&gt;&lt;/h3&gt;
 
@@ -35,11 +609,11 @@
 </entry>
 <entry>
 <title>微信支付V3 Sdk接入ecshop</title>
-<link href="http://lucksevenl7.github.io/2017/02/17/wxpay-for-ecshop/" rel="alternate" type="text/html" title="微信支付V3 Sdk接入ecshop" />
+<link href="http://deathsilence.github.io/2017/02/17/wxpay-for-ecshop/" rel="alternate" type="text/html" title="微信支付V3 Sdk接入ecshop" />
 <published>2017-02-17T19:00:00+08:00</published>
 <updated>2017-02-17T19:00:00+08:00</updated>
-<id>http://lucksevenl7.github.io/2017/02/17/wxpay-for-ecshop</id>
-<content type="html" xml:base="http://lucksevenl7.github.io/2017/02/17/wxpay-for-ecshop/">&lt;h1 id=&quot;section&quot;&gt;微信公众平台的配置&lt;/h1&gt;
+<id>http://deathsilence.github.io/2017/02/17/wxpay-for-ecshop</id>
+<content type="html" xml:base="http://deathsilence.github.io/2017/02/17/wxpay-for-ecshop/">&lt;h1 id=&quot;section&quot;&gt;微信公众平台的配置&lt;/h1&gt;
 
 &lt;h3 id=&quot;js&quot;&gt;设置js安全域名&lt;/h3&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;如果不设置的话，在使用公众号支付时会提示redirect_url错误
@@ -185,59 +759,5 @@ function respond() {
 <name>yang</name>
 </author>
 <summary>微信公众平台的配置</summary>
-</entry>
-<entry>
-<title>Laravel Valet For Ubuntu</title>
-<link href="http://lucksevenl7.github.io/2017/01/15/laravel-valet-for-ubuntu/" rel="alternate" type="text/html" title="Laravel Valet For Ubuntu" />
-<published>2017-01-15T20:00:00+08:00</published>
-<updated>2017-01-15T20:00:00+08:00</updated>
-<id>http://lucksevenl7.github.io/2017/01/15/laravel-valet-for-ubuntu</id>
-<content type="html" xml:base="http://lucksevenl7.github.io/2017/01/15/laravel-valet-for-ubuntu/">&lt;h1 id=&quot;laravel-valet-for-ubuntu&quot;&gt;Laravel Valet For Ubuntu&lt;/h1&gt;
-
-&lt;h2 id=&quot;install-php-and-extentions&quot;&gt;install php and extentions&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install php
-php*-cli php*-common php*-curl php*-json php*-mbstring php*-mcrypt php*-opcache php*-readline php*-xml php*-zip
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;install-mysql-and-mysql-php&quot;&gt;install mysql and mysql-php&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install mysql-server mysql-client
-sudo apt install php-mysql
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;install-composer&quot;&gt;install composer&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo php -r &quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;
-sudo php composer-setup.php
-sudo mv composer.phar /usr/local/bin/composer
-sudo php -r &quot;unlink(&#39;composer-setup.php&#39;);&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;use-composer-install-valet&quot;&gt;use composer install valet&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer global require cpriego/valet-ubuntu
-if get composer.json is not wirteable use: sudo chown -R $user ~/.composer
-add ~/.composer/vendor/bin to PATH
-valet install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;use-valet&quot;&gt;use valet&lt;/h2&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;创建一个新目录，例如 mkdir ~/Sites，然后进入这个目录并运行 valet park。这个命令会将当前所在目录作为web根目录。
-接下来，在新建的目录中创建一个新的Laravel站点：     
-composer global require &quot;laravel/installer&quot;
-laravel new blog。
-
-然后进入项目根目录下运行 valet link project-name
-在浏览器中访问 http://blog.dev。
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</content>
-<author>
-<name>yang</name>
-</author>
-<summary>Laravel Valet For Ubuntu</summary>
 </entry>
 </feed>
