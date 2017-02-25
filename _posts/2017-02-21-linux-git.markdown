@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "大家快来发文章啊"
-subtitle:   "Linux常用命令(不定期更新)"
+title:      "Linux常用命令(不定期更新)"
+subtitle:   "linux and git"
 date:       2017-02-21 11:00:00
 author:     "yang"
 header-img: "img/post-bg-05.jpg"
@@ -25,6 +25,13 @@ header-img: "img/post-bg-05.jpg"
     
 ####  [git学习推荐网站](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137628548491051ccfaef0ccb470894c858999603fedf000)
 
+1. git 删除远程分支  		git push origin --delete <branch_name>
+
+2. git删除本地分支 		git branch -d <branch_name>
+
+3. git回滚 			git reset --hard  <HEAD>
+
+4. git跟踪远程分支   		git checkout -b <branch_name> origin/<branch_name>
 
 
 ### 随时补充
