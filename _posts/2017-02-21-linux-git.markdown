@@ -22,6 +22,7 @@ header-img: "img/post-bg-05.jpg"
     2. find / -name "*google-music*" -exec rm -rf "{}" \;  根据文件名查找文件，并且将符合条件的文件删除    注：分号是必需的
     3. python -m SimpleHTTPServer   将该命令执行时所在的目录文件分享给同事，分享前注意将文件打包
     4. scp -P 2048 -r root@114.215.28.178:/home/backup_ytparty_data .            复制远程服务器上的文件到当前目录 -P 指定端口  
+    
 ## ubuntu字体安装
 
 	1.将windows里复制过来的文字先复制到Downloads下的新文件夹，命名为winFonts。
