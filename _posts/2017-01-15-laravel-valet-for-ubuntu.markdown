@@ -35,6 +35,7 @@ header-img: "img/post-bg-04.jpg"
     接下来，在新建的目录中创建一个新的Laravel站点：     
     composer global require "laravel/installer"
     laravel new blog。
+    或者 composer create-project --prefer-dist laravel/laravel  project-name
     
     然后进入项目根目录下运行 valet link project-name
     在浏览器中访问 http://blog.dev。
