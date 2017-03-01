@@ -1,0 +1,60 @@
+---
+layout:     post
+title:      "ngrok快速使用"
+date:       2017-02-28 16:21:00
+author:     "yu"
+header-img: "img/post-bg-05.jpg"
+---
+
+## 详解nth-child
+ 
+##### ie6-8及ie6以上的浏览器请绕过
+` :nth-child(2)选取第几个标签，“2可以是你想要的数字” `
+ 
+``` 
+.demo01 li:nth-child(2){background:#090} ```
+
+![详图](/img/nth-child-img.png)
+
+` :nth-child(n+4)选取大于等于4标签，“n”表示从整数，下同 `
+
+``` 
+.demo01 li:nth-child(n+4){background:#090} ```
+
+![详图](/img/nth-child-img.png)
+ 
+` :nth-child(2n)选取偶数标签，2n也可以是even `
+ 
+
+``` 
+.demo01 li:nth-child(2n){background:#090}
+ 
+```
+![详图](/img/nth-child-img.png)
+
+` :nth-child(2n-1)选取奇数标签，2n-1可以是odd `
+ 
+```
+.demo01 li:nth-child(2n-1){background:#090} ```
+
+![详图](/img/nth-child-img.png)
+
+` :nth-child(3n+1)自定义选取标签，3n+1表示“隔二取一” `
+
+```
+.demo01 li:nth-child(3n+1){background:#090} ```
+
+![详图](/img/nth-child-img.png)
+
+` :last-child选取最后一个标签 `
+
+``` 
+.demo01 li:last-child{background:#090} ```
+
+![详图](/img/nth-child-img.png)
+
+` :nth-last-child(3)选取倒数第几个标签,3表示选取第3个 `
+
+```
+.demo01 li:nth-last-child(3){background:#090}
+```
