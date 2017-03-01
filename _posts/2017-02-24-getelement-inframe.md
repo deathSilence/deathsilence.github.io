@@ -4,7 +4,6 @@ title:      "获取另外iframe中的元素"
 subtitle:   "get element inner orther iframe"
 date:       2017-02-24 16:47:00
 author:     "yang"
-description: "js获取另外iframe中的元素"
 header-img: "img/post-bg-03.jpg"
 ---
 
