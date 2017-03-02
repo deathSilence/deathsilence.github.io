@@ -34,7 +34,7 @@ replicate_wild_ignore_table = database1.table1
 slave-skip-errors=all
 ```
  - 修改完配置后重启数据库
- - 在主数据库里添加用于同步的账号(slave)，并查看主数据库(192.168.1.2)的 master 信息,
+ - 在主数据库里添加用于同步的账号(slave)，并查看主数据库(192.168.1.2)的 master 信息
 ```
 mysql -u root -p
 grant replication slave on *.* to 'slave'@'192.168.1.3' identified by 'password';
@@ -50,4 +50,10 @@ start slave;
 ```
 show slave status\G;
 ```
- - 若 Slave_IO_Running 和 Slave_SQL_Running 均显示 Yes ，则说明 主-->从 复制设置成功。从--->主 设置步骤同样的方法。
+ - 若 Slave_IO_Running 和 Slave_SQL_Running 均显示 Yes ，则说明 主-->从 复制设置成功。从--->主复制步骤方法一样
+## 遇到的问题(针对忽略的表)
+- 每日更新的表比较小，可忽略下一步，只需要设置定时清理即可
+- 这几个表有几百万的数据，主服务器上 (/var/log/mysql) 还是会产生大量的 log ，磁盘容量小，会导成磁盘空间不足，可在脚本添加一句 sql 语句，日期可根据系统时间自定义
+```
+PURGE MASTER LOGS BEFORE '2017-03-01 20:00:00';
+``` 
