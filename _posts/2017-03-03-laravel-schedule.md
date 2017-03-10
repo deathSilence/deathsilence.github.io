@@ -2,7 +2,7 @@
 layout:     post
 title:      "laravel-schedule"
 subtitle:   "laravel中使用定时任务的几点注意事项"
-date:       2017-03-02 17:10:00
+date:       2017-03-10 16:38:00
 author:     "杨"
 header-img: "img/post-bg-04.jpg"
 ---
