@@ -1,0 +1,29 @@
+---
+layout:     post
+title:      "laravel-schedule"
+subtitle:   "laravel中使用定时任务的几点注意事项"
+date:       2017-03-12 17:04:00
+author:     "杨"
+header-img: "img/post-bg-05.jpg"
+---
+
+# laravel笔记
+
+1. 检测table中是否含有某字段
+
+    
+```
+use Schema;
+Schema::hasColumn($this->model->getTable(), 'DateTime');
+
+```
+
+2. 在html标签内部使用blade 标签
+
+
+```
+    style="{!! $entry->StorkType==1? '':'display:none' !!}" 
+ 
+```
+
+
