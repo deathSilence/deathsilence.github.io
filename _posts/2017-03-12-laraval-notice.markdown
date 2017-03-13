@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "laravel-schedule"
+title:      "laravel-notice"
 subtitle:   "laravel中使用定时任务的几点注意事项"
 date:       2017-03-12 17:04:00
 author:     "杨"
