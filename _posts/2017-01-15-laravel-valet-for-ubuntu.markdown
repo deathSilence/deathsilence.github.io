@@ -12,7 +12,7 @@ header-img: "img/post-bg-04.jpg"
 ## install php and extentions
 
     sudo apt-get install php
-    php*-cli php*-common php*-curl php*-json php*-mbstring php*-mcrypt php*-opcache php*-readline php*-xml php*-zip
+    php*-cli php*-common php*-curl php*-json php*-mbstring php*-mcrypt php*-opcache php*-readline php*-xml php*-zip    (like sudo apt install php7.0-xml)
 
 ## install mysql and mysql-php
     sudo apt-get install mysql-server mysql-client
@@ -27,7 +27,8 @@ header-img: "img/post-bg-04.jpg"
 ## use composer install valet
     composer global require cpriego/valet-ubuntu
     if get composer.json is not wirteable use: sudo chown -R $user ~/.composer
-    add ~/.composer/vendor/bin to PATH
+    
+    use " export PATH=$PATH:~/.composer/vendor/bin"    add ~/.composer/vendor/bin to PATH
     valet install
     
 ## use valet
