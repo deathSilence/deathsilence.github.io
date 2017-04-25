@@ -25,11 +25,13 @@ header-img: "img/post-bg-04.jpg"
     sudo php -r "unlink('composer-setup.php');"
 
 ## use composer install valet
-    composer global require cpriego/valet-ubuntu
-    if get composer.json is not wirteable use: sudo chown -R $user ~/.composer
-    
-    use " export PATH=$PATH:~/.composer/vendor/bin"    add ~/.composer/vendor/bin to PATH
-    valet install
+    执行 ：composer global require cpriego/valet-ubuntu 
+    如果提示“ composer.json is not wirteable ”因为之前安装composer使用了sudo ,所以当前用户没有权限写composer.json文件
+    执行 ： sudo chown -R $user ~/.composer  将.composer文件夹的所有者改为当前用户,$user 需要修改成当前用户名，比如 yufan
+    然后再次执行： composer global require cpriego/valet-ubuntu ，如果没有错误提示说明安装成功
+    下一步执行 ：valet install,会提示找不到命令，需要将valet 添加到环境变量里
+    执行 ：export PATH=$PATH:~/.composer/vendor/bin
+    最后执行： valet install
     
 ## use valet
     创建一个新目录，例如 mkdir ~/Sites，然后进入这个目录并运行 valet park。这个命令会将当前所在目录作为web根目录。
