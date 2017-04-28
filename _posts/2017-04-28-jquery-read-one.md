@@ -4,12 +4,14 @@ title:      "jQuery源码阅读笔记一"
 subtitle:   "当我们使用$()时到底发生了什么"
 date:       2017-04-28 14:47:31
 author:     "杨"
-header-img: "img/post-bg-06.jpg"
+header-img: "img/post-bg-04.jpg"
 ---
 
 # jQuery源码阅读笔记一
 
-### jquery version:3.2.1
+--- jquery version:3.2.1
+
+
 
 #### 当我们使用$()时到底发生了什么
 
