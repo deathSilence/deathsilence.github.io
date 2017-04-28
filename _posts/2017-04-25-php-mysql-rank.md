@@ -7,9 +7,9 @@ author:     "杨"
 header-img: "img/post-bg-06.jpg"
 ---
 
-#php mysql 生成排名
+# php mysql 生成排名
 
-##方法一：直接使用mysql中的函数
+## 方法一：直接使用mysql中的函数
     
 ```
 select id,count，FIND_IN_SET( count, (SELECT GROUP_CONCAT( count ORDER BY count DESC ) 
@@ -19,7 +19,7 @@ from table_name  order by rank;
 ```
 这种方法比较省代码，但是不易读，查询效率也较低
 
-##方法二：php函数
+## 方法二：php函数
 
 ```
      public  function actor_rank_list(){
