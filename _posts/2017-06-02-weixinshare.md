@@ -21,6 +21,7 @@ echo htmlentities($str);
 // Outputs: A &#039;quote&#039; is &lt;b&gt;bold&lt;/b&gt;
 echo htmlentities($str, ENT_QUOTES);
 ?>
+
 ```
 这样我认为可以使用html_entity_decode()来转换回来
 
@@ -37,6 +38,7 @@ echo $a; // I'll &quot;walk&quot; the &lt;b&gt;dog&lt;/b&gt; now
 
 echo $b; // I'll "walk" the <b>dog</b> now
 ?>
+
 ```
 
 结果在微信分享时没有起作用，可能是我打开姿势不对，然后有在stackoverflow上找到了一个黑科技
